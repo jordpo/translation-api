@@ -49,6 +49,32 @@ class TranslationModel:
         except Exception as e:
             print(f"Translation error: {e}")
             raise
+    
+    def translate_batch(self, texts: list[str], source_lang: str, target_lang: str) -> list[str]:
+        """Translate multiple texts in a single batch for better performance."""
+        if not self.is_loaded or not self.model:
+            raise ValueError("Model not loaded")
+        
+        # Convert language codes to NLLB format
+        src_lang_code = config.LANGUAGE_CODES.get(source_lang)
+        tgt_lang_code = config.LANGUAGE_CODES.get(target_lang)
+        
+        if not src_lang_code or not tgt_lang_code:
+            raise ValueError(f"Unsupported language pair: {source_lang} -> {target_lang}")
+        
+        try:
+            # Process batch - model handles batching internally
+            results = self.model(
+                texts,
+                src_lang=src_lang_code,
+                tgt_lang=tgt_lang_code,
+                batch_size=len(texts),
+                clean_up_tokenization_spaces=True
+            )
+            return [r['translation_text'] for r in results]
+        except Exception as e:
+            print(f"Batch translation error: {e}")
+            raise
 
 
 # Global model instance
