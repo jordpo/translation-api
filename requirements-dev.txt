@@ -1,0 +1,7 @@
+pytest
+pytest-cov
+pytest-asyncio
+flake8
+black
+mypy
+httpx  # For testing FastAPI

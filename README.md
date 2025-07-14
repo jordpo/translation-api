@@ -1,6 +1,20 @@
-# Translation Service
+# Translation API
 
-A FastAPI-based translation service that will handle translation requests from Phoenix applications.
+![Python](https://img.shields.io/badge/python-v3.13.1-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0-green.svg)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+A high-performance translation API built with FastAPI and Facebook's NLLB-200 model. Supports 20+ languages with Redis caching for optimal performance.
+
+## Features
+
+- 🚀 **Fast**: Batch processing with optimized caching
+- 🌍 **20+ Languages**: Powered by Facebook's NLLB-200 model
+- 💾 **Redis Caching**: 30-day cache TTL for repeated translations
+- 🐳 **Docker Ready**: Pre-built images with model included
+- 📊 **Production Ready**: Health checks, monitoring, and scaling support
+- 🔄 **Batch API**: Translate multiple texts in a single request
 
 ## Setup
 
@@ -197,8 +211,8 @@ For production deployment:
 
 4. **Clone and Deploy**:
    ```bash
-   git clone https://github.com/your-repo/translation-service.git
-   cd translation-service
+   git clone https://github.com/yourusername/translation-api.git
+   cd translation-api
    
    # Create .env file
    cp .env.example .env
@@ -272,10 +286,40 @@ sudo rpm -U ./amazon-cloudwatch-agent.rpm
    - Use AWS Backup for EBS volumes
    - Schedule daily snapshots
 
-### Development
+## Development
 
-The service uses:
-- **FastAPI** for the web framework
-- **Transformers** and **Torch** for translation models
-- **Redis** for caching translations
-- **Pydantic** for data validation
+### Tech Stack
+
+- **FastAPI** - High-performance web framework
+- **Transformers** - Hugging Face transformers for NLLB model
+- **PyTorch** - Deep learning framework
+- **Redis** - In-memory caching
+- **Docker** - Containerization
+- **Pydantic** - Data validation
+
+### Running Tests
+
+```bash
+# Install dev dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=app
+```
+
+### Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Facebook AI for the NLLB-200 model
+- FastAPI community
+- Contributors and maintainers
